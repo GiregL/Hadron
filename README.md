@@ -32,7 +32,7 @@ The example above deletes the `a` stack.
 
 ## Operators
 
-The two following are equivalent, so that you'll be able to use these with whatever you want.
+The two following are almost equivalent, so that you'll be able to use these with whatever you want.
 Just be coherent.
 
 `a +> b` pushes `a` in front of `b`
@@ -43,6 +43,8 @@ The same principle applies below.
 
 `a -> b` pops from `a` and stores into `b`
 `a <- b` does the same thing as above
+
+`+>` and `<+` are respectively right and left associative such as `<-` and `->`.
 
 ### Source and Target
 
