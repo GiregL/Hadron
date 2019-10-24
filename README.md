@@ -41,8 +41,8 @@ Just be coherent.
 
 The same principle applies below.
 
-`a -> b` pops `a` from `b`
-`a <- b` pops `b` from `a`
+`a -> b` pops from `a` and stores into `b`
+`a <- b` does the same thing as above
 
 ### Source and Target
 
