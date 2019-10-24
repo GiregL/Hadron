@@ -35,9 +35,9 @@ The example above deletes the `a` stack.
 The two following are equivalent, so that you'll be able to use these with whatever you want.
 Just be coherent.
 
-`a +> b` pushes `a` into `b`
+`a +> b` pushes `a` in front of `b`
 
-`a <+ b` pushes `b` into `a`
+`a <+ b` pushes `b` in front of `a`
 
 The same principle applies below.
 
@@ -57,6 +57,17 @@ Those concepts are simple:
 a -> b
 // Or alternatively
 b <- a
+```
+
+```
+var aStack: Integer
+aStack <+ 3 <+ 2 <+ 1 <+ 0
+// aStack now looks like [0, 1, 2, 3]
+
+var other: Integer
+other <- aStack
+other <- aStack
+// other looks like [1, 0]
 ```
 
 Here we have:
