@@ -1,10 +1,9 @@
+
 # Hadron
 
-Hadron is a Stack based language.
+Hadron is a **Stack based** language which provides on ly basic types and operations to act on the value like stacks with two operators.
 
-It provides on ly basic types and operation to act on the value like stacks with two operators
-
-The language's syntax is really easy: one line equals to one instruction.
+Its syntax is really easy: one line equals to one instruction.
 
 ## Basic stacks
 
@@ -20,20 +19,21 @@ The language's syntax is really easy: one line equals to one instruction.
 
 ## Operators
 
-The two following are equivalents so that you'll be able to use what you want. Just be coherent.
+The two following are equivalent, so that you'll be able to use these with whatever you want.
+Just be coherent.
 
 `a +> b` pushes `a` into `b`
+
 `a <+ b` pushes `b` into `a`
 
-The next two too
+The same principle applies below.
 
 `a -> b` pops `a` from `b`
 `a <- b` pops `b` from `a`
 
 ## Predefined behaviours
 
-On classic types like Integers, Doubles, String, ... push and pops have a predifined behaviour.
-
+On classic types like Integer, Double, String, ..., `push` and `pop` have a predefined behaviour.
 Later, you'll be able to define your own types and behaviours
 
 ## Examples
@@ -48,7 +48,12 @@ someInteger +> anOtherInteger
 anOtherInteger +> ' ' +> "\nString literal\n" +> outputStream
 ```
 
-The code above declares two stacks : `someInteger` and `anOtherInteger`. Then it pushes two times `someInteger` into `anOtherInteger`, which result for Integer stacks of an addition. Finally it prints:
+The code above has three main instructions.
+
+ - It declares two stacks : `someInteger` and `anOtherInteger`.
+ - Then it pushes two times `someInteger` into `anOtherInteger`, which results
+   in Integer stacks of an addition.
+ - Finally it prints out the result below
 
 ```
 30 
