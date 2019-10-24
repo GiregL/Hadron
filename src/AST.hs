@@ -24,10 +24,7 @@ data Source
     | StackName String
     deriving (Show)
 
-data Target
-    = TargetName String
-    | LitSource Source
-    deriving (Show)
+type Target = String
 
 -- Instruction in the
 data Instruction
