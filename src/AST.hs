@@ -29,6 +29,7 @@ type Target = String
 -- Instruction in the
 data Instruction
     = StackDeclaration String Type
+    | Commentary String
     | StackPush Source Target
     | StackPop Source Target
     deriving (Show)

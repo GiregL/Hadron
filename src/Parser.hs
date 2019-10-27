@@ -124,8 +124,7 @@ popOperation = try leftPopOperation <|> rightPopOperation
 -- Parsing a single line
 line :: Parser Instruction
 line = do
-    skipMany commentary
-    result <- varDeclaration
+    result <- varDeclaration <|> try pushOperation <|> popOperation
     many newline
     return result
 
