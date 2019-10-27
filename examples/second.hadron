@@ -1,0 +1,4 @@
+var custom: CustomType
+var another: Something
+
+custom <- another
