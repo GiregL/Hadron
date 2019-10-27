@@ -31,7 +31,7 @@ varDeclaration = do
     name <- identifier
     char ':'
     many $ oneOf " \t"
-    typename <- (string "Integer") <|> (string "Char") <|> (string "Bool") <|> (string "Double") <|> (many alphaNum)
+    typename <- try (string "Integer") <|> try (string "Char") <|> try (string "Bool") <|> try (string "Double") <|> (many alphaNum)
 
     let analyseType "Integer" = HInteger
         analyseType "Double" = HDouble
