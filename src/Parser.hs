@@ -5,6 +5,8 @@ import AST
 import Text.Parsec
 import Text.Parsec.String (Parser)
 
+import Data.Char (isDigit)
+
 -- Parsec reminder
 -- ParsecT s u m a
 --   s = flux type, instance of Stream
@@ -40,12 +42,12 @@ varDeclaration = do
 
 hinteger :: Parser Literal
 hinteger = do
-    int <- many $ oneOf "0123456789"
+    int <- many1 $ satisfy isDigit
     return $ HIntLit (read int)
 
 hdouble :: Parser Literal
 hdouble = do
-    let p = many1 $ oneOf "0123456789"
+    let p = many1 $ satisfy isDigit
 
     i <- p
     char '.'
@@ -61,14 +63,16 @@ hchar = do
     return $ HCharLit content
 
 hbool :: Parser Literal
-hbool = do
-    content <- (string "True") <|> (string "False")
-
-    let identify "True" = True
-        identify "False" = False
-        identify _ = False
-    
-    return $ HBoolLit (identify content)
+--hbool = do
+--    content <- (string "True") <|> (string "False")
+--
+--    let identify "True" = True
+--        identify "False" = False
+--        identify _ = False
+--    
+--    return $ HBoolLit (identify content)
+--hbool = (HBoolLit <$> (True <$ string "True")) <|> (HBoolLit <$> (False <$ string "False"))
+hbool = HBoolLit <$> ( (True <$ string "True") <|> (False <$ string "False") )
 
 literal :: Parser Literal
 literal = hbool <|> hchar <|> (try hdouble) <|> hinteger
@@ -79,18 +83,27 @@ identifier = many1 $ alphaNum
 source :: Parser Source
 source = (HLiteral <$> literal) <|> (StackName <$> identifier)
 
+-- Push operation section
+
+leftPushOperation :: Parser Instruction
+leftPushOperation = do
+    t <- identifier
+    operator <- between (char ' ') (char ' ') $ string "<+"
+    s <- source
+    return $ StackPush s t
+
+rightPushOperation :: Parser Instruction
+rightPushOperation = do
+    s <- source
+    between (char ' ') (char ' ') $ string "+>"
+    t <- identifier
+    return $ StackPush s t
+
 pushOperation :: Parser Instruction
-pushOperation = do
-    leftName <- identifier
-    stackOperator <- between (char ' ') (char ' ') $ (string "<+") <|> (string "+>")
-    rightName <- identifier
+pushOperation = leftPushOperation <|> rightPushOperation
 
-    let detectSourceTarget "<+" = StackPush (StackName leftName) rightName
-        detectSourceTarget "+>" = StackPush (StackName rightName) leftName
-    
-    return $ detectSourceTarget stackOperator
+-- Pop operation section
 
-    
 -- Parsing a single line
 line :: Parser Instruction
 line = do
