@@ -5,6 +5,8 @@ Hadron is a **Stack based** language which provides on ly basic types and operat
 
 Its syntax is really easy: one line equals to one instruction.
 
+**The parser will be recoded soon, some features aren't clean**
+
 ## Basic stacks
 
 `inputStream` and `outputStream` are the only two global stacks.
