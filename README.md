@@ -80,29 +80,9 @@ Here we have:
 
 ## Predefined behaviours
 
-On classic types like Integer, Double, String, ..., `push` and `pop` have a predefined behaviour.
+On classic types like Integer, Double, ..., `push` and `pop` have a predefined behaviour.
 Later, you'll be able to define your own types and behaviours
 
 ## Examples
 
-```
-var someInteger: Integer = 0
-var anOtherInteger: Integer = 15
-
-someInteger +> anOtherInteger
-someInteger +> anOtherInteger
-
-anOtherInteger +> ' ' +> "\nString literal\n" +> outputStream
-```
-
-The code above has three main instructions.
-
- - It declares two stacks : `someInteger` and `anOtherInteger`.
- - Then it pushes two times `someInteger` into `anOtherInteger`, which results
-   in Integer stacks of an addition.
- - Finally it prints out the result below
-
-```
-30 
-String literal
-```
+**Incoming section**
