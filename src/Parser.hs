@@ -14,11 +14,12 @@ import Data.Char (isDigit)
 --   m = /
 --   a = return type
 
-commentary :: Parser Instruction
-commentary = do
+-- Added in a next version
+comment :: Parser Instruction
+comment = do
     char '#'
     comm <- many $ noneOf "\n"
-    return $ Commentary comm
+    return $ Comment comm
 -- the char # followed by many chars different than `\n`
 
 -- Returns a stack declaration instruction
