@@ -1,0 +1,7 @@
+var firstStack: Integer
+var secondStack: Integer
+
+firstStack <+ 1
+firstStack <+ 98
+
+secondStack <- firstStack
