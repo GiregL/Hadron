@@ -100,9 +100,26 @@ rightPushOperation = do
     return $ StackPush s t
 
 pushOperation :: Parser Instruction
-pushOperation = leftPushOperation <|> rightPushOperation
+pushOperation = try leftPushOperation <|> rightPushOperation
 
 -- Pop operation section
+
+leftPopOperation :: Parser Instruction
+leftPopOperation = do
+    t <- identifier
+    operator <- between (char ' ') (char ' ') $ string "<-"
+    s <- source
+    return $ StackPush s t
+
+rightPopOperation :: Parser Instruction
+rightPopOperation = do
+    s <- source
+    between (char ' ') (char ' ') $ string "->"
+    t <- identifier
+    return $ StackPush s t
+
+popOperation :: Parser Instruction
+popOperation = try leftPopOperation <|> rightPopOperation
 
 -- Parsing a single line
 line :: Parser Instruction
