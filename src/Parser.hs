@@ -75,8 +75,11 @@ hbool :: Parser Literal
 --hbool = (HBoolLit <$> (True <$ string "True")) <|> (HBoolLit <$> (False <$ string "False"))
 hbool = HBoolLit <$> ( (True <$ string "True") <|> (False <$ string "False") )
 
+hvoid :: Parser Literal
+hvoid = HVoid <$ string "()"
+
 literal :: Parser Literal
-literal = hbool <|> hchar <|> (try hdouble) <|> hinteger
+literal = hbool <|> hchar <|> (try hdouble) <|> hinteger <|> hvoid
 
 identifier :: Parser String
 identifier = many1 $ alphaNum
